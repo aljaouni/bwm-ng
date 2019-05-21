@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "bwm",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -36,10 +36,9 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./styles"
+                "src/styles"
               ]
-            }
-            ,
+            },
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -146,5 +145,12 @@
       }
     }
   },
-  "defaultProject": "bwm-ng"
+  "defaultProject": "bwm-ng",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    }
+  }
 }
