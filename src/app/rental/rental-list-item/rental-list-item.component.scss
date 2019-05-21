@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'styles/variables';
-html,body,p,h6{
-  color: $main-text-color;
-}
+@import 'variables';
 
+a{
+  &:hover ,&:focus{
+    text-decoration: none;
+  }
+}
 /* SINGLE CARD STYLES*/
 .bwm-card {
   border: none;
