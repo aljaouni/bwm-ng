@@ -1,9 +1,17 @@
 import {Injectable} from '@angular/core';
 import {observable, Observable} from 'rxjs';
 import {Rental} from './rental.model';
+import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class RentalService {
-  private rentals: Rental[] =[
+  constructor(private http: HttpClient){}
+  public getRentals(): Observable<any>{
+    return this.http.get('/api/v1/rentals');
+  }
+  public getRentalByid(rentalId: string): Observable<any>{
+    return this.http.get('/api/v1/rentals/'+rentalId);
+  }
+  /*private rentals: Rental[] =[
     {
       id: "1",
       title: 'Central Apartment',
@@ -57,6 +65,7 @@ export class RentalService {
       createdAt: '24/12/2017'
     }
   ];
+
   public getRentalByid(rentalId: string): Observable<Rental>{
     return new Observable<Rental>((observer)=>{
       setTimeout(()=>{
@@ -73,5 +82,5 @@ export class RentalService {
         observer.next(this.rentals);
       },1000);
     });
-  }
+  }*/
 }
