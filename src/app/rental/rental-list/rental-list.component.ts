@@ -18,7 +18,7 @@ export class RentalListComponent implements OnInit {
         this.rentals=rentals;
       },
       (err)=>{console.log(err)},
-      ()=>{console.log("Complate ")},
+      ()=>{},
     );
   }
 
