@@ -8,7 +8,7 @@ exports.auth = function(req,res){
     return res.status(422).send({errors:[{title: 'Missing Data',detail: 'Provide email and password!' }]});
   User.findOne({email},function (err,user) {
     if(err)
-      return res.status(422).send(normalizeErrors(err.errors));
+      return res.status(422).send({errors: normalizeErrors(err.errors)});
     if(!user)
       return res.status(422).send({errors:[{title: 'Invalid User!',detail: 'User does not exist!'}]});
     if(user.hasSamePassword(password)){
@@ -30,13 +30,13 @@ exports.register = function(req,res){
     return res.status(422).send({errors:[{title: 'Missing Data',detail: 'Password is not a same as password confirmation!' }]});
   User.findOne({email},function (err,existingUser) {
     if(err)
-      return res.status(422).send(normalizeErrors(err.errors));
+      return res.status(422).send({errors: normalizeErrors(err.errors)});
     if(existingUser)
       return res.status(422).send({errors:[{title: 'Invalid Email!',detail: 'User with this email already exist!'}]});
     const user= new User({username,email,password});
     user.save(function (err) {
       if(err)
-        return res.status(422).send(normalizeErrors(err.errors));
+        return res.status(422).send({errors: normalizeErrors(err.errors)});
       return  res.json({'registred':true});
     });
   });
@@ -47,7 +47,7 @@ exports.authMiddleware= function(req,res,next){
     const user=parseToken(token);
     User.findById(user.userId,function (err,user) {
       if(err){
-        return res.status(422).send(normalizeErrors(err.errors));
+        return res.status(422).send({errors: normalizeErrors(err.errors)});
       }
       if(user){
         res.locals.user=user;

@@ -5,24 +5,22 @@ import { MapModule } from './common/map/map.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
-import { TempComponent } from './temp/temp.component';
 
 import { RentalModule } from './rental/rental.module';
-
+import { AuthModule } from './auth/auth.module';
 const router: Routes = [
   {path: '' , redirectTo: '/rentals',pathMatch: 'full'},
-  {path: 'temp' , component: TempComponent},
 ];
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TempComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(router),
     RentalModule,
+    AuthModule,
     MapModule,
   ],
   providers: [],
